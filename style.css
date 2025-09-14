@@ -4,7 +4,10 @@ body { font-family: Arial, sans-serif; background: #0d0d0d; color: #eee; line-he
 
 /* Navbar */
 .navbar { 
-  position: fixed; top: 0; left: 0; width: 100%; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
   background: rgba(0,0,0,0.9); 
   padding: 10px 20px; 
   display: flex; 
@@ -12,11 +15,31 @@ body { font-family: Arial, sans-serif; background: #0d0d0d; color: #eee; line-he
   align-items: center; 
   z-index: 100; 
 }
-.navbar .logo { display: none; } /* hide logo so only centered links show */
 .navbar .nav-links { display: flex; gap: 20px; justify-content: center; }
 .navbar .nav-links a { color: #eee; text-decoration: none; transition: color 0.3s; font-weight: bold; }
 .navbar .nav-links a:hover { color: #8ab4f8; }
 .menu-btn { display: none; background: none; border: none; color: #eee; font-size: 22px; cursor: pointer; }
+
+/* Mobile fix → navbar scrolls normally */
+@media(max-width: 768px){
+  .navbar {
+    position: relative; /* not fixed on small screens */
+  }
+  .nav-links { 
+    display: none; 
+    flex-direction: column; 
+    background: #111; 
+    position: absolute; 
+    top: 60px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    padding: 20px; 
+    border-radius: 8px; 
+  }
+  .nav-links.show { display: flex; }
+  .menu-btn { display: block; position: absolute; right: 20px; }
+}
+
 
 /* Hero */
 .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 20px 50px; gap: 20px; }
@@ -52,3 +75,4 @@ body { font-family: Arial, sans-serif; background: #0d0d0d; color: #eee; line-he
   .nav-links.show { display: flex; }
   .menu-btn { display: block; position: absolute; right: 20px; }
 }
+
